@@ -4,9 +4,8 @@
 download: bash ./scripts/get_coco.sh
 
 # train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
-train: /home/ubuntu/2022_VAIV_Cho/VAIV/Yolo/Dataset/Kospi942_2006-2022_10/train  # 118287 images
-#val: KOSPI50v2/images/valid  # 5000 images
-val: /home/ubuntu/2022_VAIV_Cho/VAIV/Yolo/Dataset/Kospi942_2006-2022_10/valid
+train: [CUSTOM_TRAIN_DATASET_PATH]  # 118287 images
+val: [CUSTOM_VAL_DATASET_PATH]
 #test: /home/ubuntu/2022_VAIV_Cho/VAIV/Yolo/Dataset/Kospi50v1/prior4_pattern3/Test2021
 #./coco/test-dev2017.txt  # 20288 of 40670 image/home/ubuntu/2022_VAIV_Cho/VAIV/Yolo/Labeling/Kospi/nonpattern_1.0.0s, submit to https://competitions.codalab.org/competitions/20794
 
