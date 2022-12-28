@@ -245,10 +245,10 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 
 ## 1-2 YOLOv7 Changes
 
-1) Detect
+### 1) Detect
 
 
-2) Components
+### 2) Components
 
 - **[labeling_csv.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/labeling_csv.py)**
   - 
