@@ -1,5 +1,7 @@
 # 1. YOLOv7
 
+
+
 The following is the official document of YOLOv7
 
 
@@ -243,14 +245,16 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 
 ## 1-2 YOLOv7 Changes
 
-1) Dataset
+1) Detect
 
-KOSPI964 Dataset
 
-![image](https://user-images.githubusercontent.com/68769481/209770869-975107e1-b9f2-45f2-8f32-4e1e5ca16feb.png)
+## 1-3 Reference Papers
 
-## Training
+Paper link: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9092995
 
-run train_all.bash 
+Github link: https://github.com/gunaytemur/With-Yolov3-Buy-Sell-on-Candlestick
+
+
+
 
 
