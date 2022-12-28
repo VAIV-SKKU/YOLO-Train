@@ -246,7 +246,7 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 ## 1-2 YOLOv7 Changes
 
 
-### 2) Components
+### Components
 
 
 - **[detect.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/draw.py)**
