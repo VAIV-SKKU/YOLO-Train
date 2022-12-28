@@ -1,1 +1,0 @@
-python train.py --workers 8 --device 1 --batch-size 16 --data data/kospiALL.yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights 'yolov7.pt' --name yolov7ALL-2006-2017train --hyp data/hyp.scratch.custom.yaml
