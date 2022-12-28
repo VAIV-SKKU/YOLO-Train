@@ -312,7 +312,7 @@ python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --con
 
 
 
-## 1-4 KOSPI50 YOLO Profit Test Results
+## 1-3 KOSPI50 YOLO Profit Test Results
 
 Dataset: 
 
