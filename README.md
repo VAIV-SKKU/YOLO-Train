@@ -316,7 +316,7 @@ python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --con
 
 Dataset: 
 
-![image](https://user-images.githubusercontent.com/68769481/209819707-a8a3da4c-8e0e-483a-b261-a8e15bfba347.png)
+![image](https://user-images.githubusercontent.com/68769481/209820274-0280ee54-a10e-4335-a260-e78849e43413.png)
 
 Result:
 
