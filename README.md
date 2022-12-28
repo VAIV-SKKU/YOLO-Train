@@ -261,15 +261,47 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 <br />
 
 - **[draw.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/draw.py)**
-  - 
+  - Allows us to draw the box and label on an image if we have the according labeling/detect csv files
 
 <br />
 
 - **[buy_sell_count.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/buy_sell_count.py)**
-  - 
+  - Tests based on the date threshold
 <br />
 
-## 1-3 Reference Papers
+
+## 1-3 How To Detect
+
+
+1. Train the model
+``` shell
+
+python train.py --workers 8 --device 0 --batch-size 32 --data data/[CUSTOM_FILE].yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights '' --name yolov7 --hyp data/hyp.scratch.p5.yaml
+
+```
+
+2. Use the weights from the trained model to run detect.py
+
+```
+python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --conf 0.8 --imgsz 640 --source [DETECT_IMAGE_FOLDER_PATH] --name '' --pair 0 
+
+
+```
+- pair 0 : Detects both BUY/SELL signals
+- pair 1 : Only detects BUY signals & SELL price for five transaction days later
+- pair 2 : Only detects SELL signals
+
+
+
+
+
+
+
+
+
+
+
+## 1-4 Reference Papers
 
 Paper link: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9092995
 
