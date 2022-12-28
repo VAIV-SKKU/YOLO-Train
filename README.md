@@ -249,16 +249,7 @@ KOSPI964 Dataset
 
 ![image](https://user-images.githubusercontent.com/68769481/209770869-975107e1-b9f2-45f2-8f32-4e1e5ca16feb.png)
 
-## Training
 
-1. Run train_all.bash
 
-2. Make the model train from the kospiAll.yaml file.
-
-``` shell
-# train p5 models
-python train.py --workers 8 --device 0 --batch-size 32 --data data/kospiAll.yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights '' --name yolov7 --hyp data/hyp.scratch.p5.yaml
-
-```
 
 
