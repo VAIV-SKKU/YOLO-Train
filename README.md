@@ -321,11 +321,10 @@ Dataset:
 Result:
 
 1) Auto-sell after five transaction days
-![image](https://user-images.githubusercontent.com/68769481/209819845-c0d80781-bce6-45cb-8c80-4f5bdac19bef.png)
+![image](https://user-images.githubusercontent.com/68769481/209820066-0c760d7c-940d-48ed-87d9-ed41035eadf5.png)
 
 2) Sell when BUY/SELL pair is satisfied
-![image](https://user-images.githubusercontent.com/68769481/209819973-4440e08e-b865-4bd7-a96e-dce8744bcdb2.png)
-
+![image](https://user-images.githubusercontent.com/68769481/209820087-0233d70a-5545-4732-8f5f-abcacc2f813d.png)
 
 
 
