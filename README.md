@@ -305,6 +305,19 @@ python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --con
 - pair 2 : Only detects SELL signals
 
 Running detect.py results in creating individual csv files for each stock. We later use these csv files to calculate the annual profits.
+The csv files are created in the dete
+
+```
+runs
+└── detect
+      └── [DUMMY_RUN]
+            ├── images
+            ├── labels  
+            ├── signals
+                 ├── 000020.csv
+                 └── ...
+
+```
 
 
 ## 5. Calculate the annual profits 
