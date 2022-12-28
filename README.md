@@ -281,7 +281,7 @@ git clone https://github.com/VAIV-SKKU/YOLO-Train.git
 
 ## 2. Add Custom Dataset path to kospiALL.yaml
 ```
-train: [CUSTOM_TRAIN_DATASET_PATH]  # 118287 images
+train: [CUSTOM_TRAIN_DATASET_PATH]
 val: [CUSTOM_VAL_DATASET_PATH]
 ```
 
