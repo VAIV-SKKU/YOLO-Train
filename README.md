@@ -305,6 +305,10 @@ python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --con
 - pair 2 : Only detects SELL signals
 
 
+## 5. Calculate the annual profits 
+
+- **[Calculate YOLO Profit](https://github.com/VAIV-SKKU/YOLO-Profit-Calculation)**
+
 
 
 
