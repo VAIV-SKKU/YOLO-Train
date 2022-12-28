@@ -248,6 +248,27 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 1) Detect
 
 
+2) Components
+
+- **[labeling_csv.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/labeling_csv.py)**
+  - 
+
+<br />
+
+- **[labeling_txt.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/labeling_txt.py)**
+  - 
+
+<br />
+
+- **[draw.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/draw.py)**
+  - 
+
+<br />
+
+- **[buy_sell_count.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/buy_sell_count.py)**
+  - 
+<br />
+
 ## 1-3 Reference Papers
 
 Paper link: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9092995
