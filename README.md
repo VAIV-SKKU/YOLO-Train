@@ -304,6 +304,8 @@ python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --con
 - pair 1 : Only detects BUY signals & SELL price for five transaction days later
 - pair 2 : Only detects SELL signals
 
+Running detect.py results in creating individual csv files for each stock. We later use these csv files to calculate the annual profits.
+
 
 ## 5. Calculate the annual profits 
 
