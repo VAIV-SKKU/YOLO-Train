@@ -295,11 +295,15 @@ python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --con
 
 
 ```
+
+### Arguments
+
 - pair 0 : Detects both BUY/SELL signals
 - pair 1 : Only detects BUY signals & SELL price for five transaction days later
 - pair 2 : Only detects SELL signals
+- conf : Only detects images above the inserted confidence score
 
-Running detect.py results in creating the 'signal' folder of the recent 'run' folder. The individual csv files for each stock are stored inside the 'signal' folder. We later use these csv files to calculate the annual profits.
+Running detect.py results in creating the 'signal' folder of the recent 'runs' folder. The individual csv files for each stock are stored inside the 'signal' folder. We later use these csv files to calculate the annual profits.
 
 
 ```
