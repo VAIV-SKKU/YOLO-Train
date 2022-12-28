@@ -273,13 +273,13 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 
 # Getting Started 
 
-##1. Clone Repository
+## 1. Clone Repository
 
 ```
 git clone https://github.com/VAIV-SKKU/YOLO-Train.git
 ```
 
-##2. Add Custom Dataset path to kospiALL.yaml
+## 2. Add Custom Dataset path to kospiALL.yaml
 ```
 train: [CUSTOM_TRAIN_DATASET_PATH]  # 118287 images
 val: [CUSTOM_VAL_DATASET_PATH]
@@ -313,6 +313,23 @@ python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --con
 
 
 ## 1-4 KOSPI50 YOLO Profit Test Results
+
+Dataset: 
+
+![image](https://user-images.githubusercontent.com/68769481/209819707-a8a3da4c-8e0e-483a-b261-a8e15bfba347.png)
+
+Result:
+
+1) Auto-sell after five transaction days
+![image](https://user-images.githubusercontent.com/68769481/209819845-c0d80781-bce6-45cb-8c80-4f5bdac19bef.png)
+
+2) Sell when BUY/SELL pair is satisfied
+![image](https://user-images.githubusercontent.com/68769481/209819973-4440e08e-b865-4bd7-a96e-dce8744bcdb2.png)
+
+
+
+
+
 
 
 
