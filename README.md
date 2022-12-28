@@ -1,5 +1,7 @@
 # 1. YOLOv7
 
+
+
 The following is the official document of YOLOv7
 
 
@@ -244,6 +246,13 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 ## 1-2 YOLOv7 Changes
 
 1) Detect
+
+
+## 1-3 Reference Papers
+
+Paper link: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9092995
+
+Github link: https://github.com/gunaytemur/With-Yolov3-Buy-Sell-on-Candlestick
 
 
 
