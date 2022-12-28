@@ -1,12 +1,9 @@
 # YOLOv7
 
-Implementation of paper - YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors
 
 ## 1-1 YOLOv7 Official Document
 
 The following is the official document for YOLOv7.
-
-# Official YOLOv7
 
 Implementation of paper - [YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors](https://arxiv.org/abs/2207.02696)
 
@@ -15,11 +12,6 @@ Implementation of paper - [YOLOv7: Trainable bag-of-freebies sets new state-of-t
 <a href="https://colab.research.google.com/gist/AlexeyAB/b769f5795e65fdab80086f6cb7940dae/yolov7detection.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 [![arxiv.org](http://img.shields.io/badge/cs.CV-arXiv%3A2207.02696-B31B1B.svg)](https://arxiv.org/abs/2207.02696)
 
-<div align="center">
-    <a href="./">
-        <img src="./figure/performance.png" width="79%"/>
-    </a>
-</div>
 
 ## Web Demo
 
@@ -148,12 +140,6 @@ On image:
 python detect.py --weights yolov7.pt --conf 0.25 --img-size 640 --source inference/images/horses.jpg
 ```
 
-<div align="center">
-    <a href="./">
-        <img src="./figure/horses_prediction.jpg" width="59%"/>
-    </a>
-</div>
-
 
 ## Export
 
@@ -197,11 +183,7 @@ Tested with: Python 3.7.13, Pytorch 1.12.0+cu113
 
 See [keypoint.ipynb](https://github.com/WongKinYiu/yolov7/blob/main/tools/keypoint.ipynb).
 
-<div align="center">
-    <a href="./">
-        <img src="./figure/pose.png" width="39%"/>
-    </a>
-</div>
+
 
 
 ## Instance segmentation
@@ -210,11 +192,7 @@ See [keypoint.ipynb](https://github.com/WongKinYiu/yolov7/blob/main/tools/keypoi
 
 See [instance.ipynb](https://github.com/WongKinYiu/yolov7/blob/main/tools/instance.ipynb).
 
-<div align="center">
-    <a href="./">
-        <img src="./figure/mask.png" width="59%"/>
-    </a>
-</div>
+
 
 ## Instance segmentation
 
@@ -252,21 +230,6 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 ## Teaser
 
 Yolov7-semantic & YOLOv7-panoptic & YOLOv7-caption
-
-<div align="center">
-    <a href="./">
-        <img src="./figure/tennis.jpg" width="24%"/>
-    </a>
-    <a href="./">
-        <img src="./figure/tennis_semantic.jpg" width="24%"/>
-    </a>
-    <a href="./">
-        <img src="./figure/tennis_panoptic.png" width="24%"/>
-    </a>
-    <a href="./">
-        <img src="./figure/tennis_caption.png" width="24%"/>
-    </a>
-</div>
 
 
 ## Acknowledgements
