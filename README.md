@@ -285,3 +285,10 @@ Yolov7-semantic & YOLOv7-panoptic & YOLOv7-caption
 
 
 ## 1-2 YOLOv7 Changes
+
+1) Dataset
+
+KOSPI964 Dataset
+
+![image](https://user-images.githubusercontent.com/68769481/209770869-975107e1-b9f2-45f2-8f32-4e1e5ca16feb.png)
+

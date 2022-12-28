@@ -1,0 +1,30 @@
+# COCO 2017 dataset http://cocodataset.org
+
+# download command/URL (optional)
+download: bash ./scripts/get_coco.sh
+
+# train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
+train: KOSPI50/images/train  # 118287 images
+val: KOSPI50/images/valid  # 5000 images
+#test: /home/ubuntu/2022_VAIV_Dataset/Yolo/2019-01-01_2019-12-31/Kospi/1800x650/yolo1
+#./coco/test-dev2017.txt  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+
+# number of classes
+nc: 17
+
+# class names
+names: ['dog',
+'person',
+'cat',
+'tv',
+'car',
+'meatballs',
+'marinara sauce',
+'tomato soup',
+'chicken noodle soup',
+'french onion soup',
+'chicken breast',
+'ribs',
+'pulled pork',
+'hamburger',
+'cavity','BUY', 'SELL' ]
