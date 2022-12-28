@@ -243,11 +243,7 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 
 ## 1-2 YOLOv7 Changes
 
-1) Dataset
-
-KOSPI964 Dataset
-
-![image](https://user-images.githubusercontent.com/68769481/209770869-975107e1-b9f2-45f2-8f32-4e1e5ca16feb.png)
+1) Detect
 
 
 
