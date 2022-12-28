@@ -245,21 +245,16 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 
 ## 1-2 YOLOv7 Changes
 
-### 1) Detect
-
 
 ### 2) Components
 
-- **[labeling_csv.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/labeling_csv.py)**
-  - 
 
-<br />
+- **[detect.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/draw.py)**
+  - Creates a csv file containing information regarding the 'Ticker,Date,Label,Close,Probability,Range,Detect' for each individual stock. 
 
-- **[labeling_txt.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/labeling_txt.py)**
-  - 
-
-<br />
-
+  
+  <br />
+  
 - **[draw.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/draw.py)**
   - Allows us to draw the box and label on an image if we have the according labeling/detect csv files
 
