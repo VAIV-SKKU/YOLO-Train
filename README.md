@@ -270,17 +270,30 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 <br />
 
 
-## 1-3 How To Detect
+
+# Getting Started 
+
+##1. Clone Repository
+
+```
+git clone https://github.com/VAIV-SKKU/YOLO-Train.git
+```
+
+##2. Add Custom Dataset path to kospiALL.yaml
+```
+train: [CUSTOM_TRAIN_DATASET_PATH]  # 118287 images
+val: [CUSTOM_VAL_DATASET_PATH]
+```
 
 
-1. Train the model
+## 3. Train the model
 ``` shell
 
 python train.py --workers 8 --device 0 --batch-size 32 --data data/[CUSTOM_FILE].yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights '' --name yolov7 --hyp data/hyp.scratch.p5.yaml
 
 ```
 
-2. Use the weights from the trained model to run detect.py
+## 4. Use the weights from the trained model to run detect.py
 
 ```
 python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --conf 0.8 --imgsz 640 --source [DETECT_IMAGE_FOLDER_PATH] --name '' --pair 0 
@@ -298,6 +311,8 @@ python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --con
 
 
 
+
+## 1-4 KOSPI50 YOLO Profit Test Results
 
 
 
