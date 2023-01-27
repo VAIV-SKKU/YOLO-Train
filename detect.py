@@ -24,13 +24,6 @@ from utils.torch_utils import select_device, load_classifier, \
     TracedModel
 
 
-ROOT = Path('/home/ubuntu/2022_VAIV_Cho/VAIV')
-sys.path.append(str(ROOT))
-sys.path.append(str(ROOT / 'Common' / 'Code'))
-
-from manager import VAIV  # noqa: E402
-
-
 def detect_light(
             weights='yolov7.pt',
             source='inference/images',
@@ -41,8 +34,7 @@ def detect_light(
             device='',
             trace=False,
             model=None,
-            vaiv=VAIV(ROOT),
-            save_dir=Path('/home/ubuntu/2022_VAIV_Cho/VAIV/Common/Server/Simulator/static/predict')
+            save_dir=(Path.cwd() / 'runs' / 'detect')
         ):
     # Initialize
     device = select_device(device)
@@ -83,8 +75,8 @@ def detect_light(
     df_list = []
     for path, img, im0s in (dataset):
         # 각 이미지마다 진행
-        stockimg = StockImage(path, vaiv)
-        # box = {}  # trade_date: df
+        stockimg = StockImage(path)
+        # box = {}  # last_date: df
         probability = 0
         # is_signal = False
 
@@ -172,7 +164,6 @@ def detect(
             name='exp',
             exist_ok=False,
             trace=True,
-            vaiv=VAIV(ROOT)
         ):
 
     # Directories
@@ -228,10 +219,10 @@ def detect(
     pbar = tqdm(total=len(dataset))
     for path, img, im0s in dataset:
         # 각 이미지마다 진행
-        stockimg = StockImage(path, vaiv)
-        if stockimg.get_trade_close(stockimg.trade_date) == 0:
+        stockimg = StockImage(path)
+        if stockimg.get_trade_close(stockimg.last_date) == 0:
             continue
-        box = {}  # trade_date: df
+        box = {}  # last_date: df
         if stockimg.ticker not in signals:
             signals[stockimg.ticker] = box
         probability = 0
@@ -284,7 +275,7 @@ def detect(
                     xmin, xmax = pixel_col[0], pixel_col[2]
                     dates = stockimg.get_box_date(xmin, xmax)
                     if len(dates) == 0:
-                        print(stockimg.ticker, stockimg.trade_date, pixel_col)
+                        print(stockimg.ticker, stockimg.last_date, pixel_col)
                         continue
                     signal = names[int(cls)]
 
@@ -292,25 +283,25 @@ def detect(
 
                     if pair == 0:
                         probability = round(float(conf), 3)
-                        trade_date = stockimg.get_trade_date(dates)
-                        close = stockimg.get_trade_close(trade_date)
-                        df = signals[stockimg.ticker].get(trade_date)
-
+                        last_date = stockimg.get_last_date(dates)
+                        close = stockimg.get_trade_close(last_date)
+                        df = signals[stockimg.ticker].get(last_date)
+                        
                         if df is None:
-                            signals[stockimg.ticker][trade_date] = pd.DataFrame({
+                            signals[stockimg.ticker][last_date] = pd.DataFrame({
                                 'Ticker': [stockimg.ticker],
-                                'Date': [trade_date],
+                                'Date': [last_date],
                                 'Label': [signal],
                                 'Close': [close],
                                 'Probability': [probability],
                                 'Range': ['/'.join(dates)],
-                                'Detect': [stockimg.trade_date]
+                                'Detect': [stockimg.last_date]
                             })
                             if stockimg.last_signal(xmin, xmax, 3):
                                 is_signal = True
                         else:
                             if df.Label[0] != signal:
-                                signals[stockimg.ticker].pop(trade_date)
+                                signals[stockimg.ticker].pop(last_date)
                                 is_signal = False
 
                         if save_txt and is_signal:  # Write to file
@@ -331,12 +322,12 @@ def detect(
 
                     if pair == 1 and signal == "buy":
                         probability = round(float(conf), 3)
-                        trade_date = stockimg.get_trade_date(dates)
-                        close = stockimg.get_trade_close(trade_date)
-                        df = signals[stockimg.ticker].get(trade_date)
+                        last_date = stockimg.get_last_date(dates)
+                        close = stockimg.get_trade_close(last_date)
+                        df = signals[stockimg.ticker].get(last_date)
 
                         # This is where we get the close price of five days later
-                        begin_date = datetime.strptime(trade_date, "%Y-%m-%d")
+                        begin_date = datetime.strptime(last_date, "%Y-%m-%d")
                         five_days_later = begin_date + timedelta(days=5)
 
                     #    five_days_later = stockimg.stock[begin_date + timedelta(days=5)]
@@ -366,14 +357,14 @@ def detect(
                         # End
 
                         if df is None:
-                            signals[stockimg.ticker][trade_date] = pd.DataFrame({
+                            signals[stockimg.ticker][last_date] = pd.DataFrame({
                                 'Ticker': [stockimg.ticker],
-                                'Date': [trade_date],
+                                'Date': [last_date],
                                 'Label': [signal],
                                 'Close': [close],
                                 'Probability': [probability],
                                 'Range': ['/'.join(dates)],
-                                'Detect': [stockimg.trade_date],
+                                'Detect': [stockimg.last_date],
                                 'Five': [five_days_later_price],
                                 'End': [end_date]
                             })
@@ -381,7 +372,7 @@ def detect(
                                 is_signal = True
                         else:
                             if df.Label[0] != signal:
-                                signals[stockimg.ticker].pop(trade_date)
+                                signals[stockimg.ticker].pop(last_date)
                                 is_signal = False
 
                         if save_txt and is_signal:  # Write to file
@@ -401,25 +392,25 @@ def detect(
                             )
                     elif pair == 2 and signal == "sell":
                         probability = round(float(conf), 3)
-                        trade_date = stockimg.get_trade_date(dates)
-                        close = stockimg.get_trade_close(trade_date)
-                        df = signals[stockimg.ticker].get(trade_date)
+                        last_date = stockimg.get_last_date(dates)
+                        close = stockimg.get_trade_close(last_date)
+                        df = signals[stockimg.ticker].get(last_date)
 
                         if df is None:
-                            signals[stockimg.ticker][trade_date] = pd.DataFrame({
+                            signals[stockimg.ticker][last_date] = pd.DataFrame({
                                 'Ticker': [stockimg.ticker],
-                                'Date': [trade_date],
+                                'Date': [last_date],
                                 'Label': [signal],
                                 'Close': [close],
                                 'Probability': [probability],
                                 'Range': ['/'.join(dates)],
-                                'Detect': [stockimg.trade_date]
+                                'Detect': [stockimg.last_date]
                             })
                             if stockimg.last_signal(xmin, xmax, 3):
                                 is_signal = True
                         else:
                             if df.Label[0] != signal:
-                                signals[stockimg.ticker].pop(trade_date)
+                                signals[stockimg.ticker].pop(last_date)
                                 is_signal = False
 
                         if save_txt and is_signal:  # Write to file
@@ -447,25 +438,25 @@ def detect(
                                 check = 1
 
                                 probability = round(float(conf), 3)
-                                trade_date = stockimg.get_trade_date(dates)
-                                close = stockimg.get_trade_close(trade_date)
-                                df = signals[stockimg.ticker].get(trade_date)
+                                last_date = stockimg.get_last_date(dates)
+                                close = stockimg.get_trade_close(last_date)
+                                df = signals[stockimg.ticker].get(last_date)
 
                                 if df is None:
-                                    signals[stockimg.ticker][trade_date] = pd.DataFrame({
+                                    signals[stockimg.ticker][last_date] = pd.DataFrame({
                                         'Ticker': [stockimg.ticker],
-                                        'Date': [trade_date],
+                                        'Date': [last_date],
                                         'Label': [signal],
                                         'Close': [close],
                                         'Probability': [probability],
                                         'Range': ['/'.join(dates)],
-                                        'Detect': [stockimg.trade_date]
+                                        'Detect': [stockimg.last_date]
                                     })
                                     if stockimg.last_signal(xmin, xmax, 3):
                                         is_signal = True
                                 else:
                                     if df.Label[0] != signal:
-                                        signals[stockimg.ticker].pop(trade_date)
+                                        signals[stockimg.ticker].pop(last_date)
                                         is_signal = False
 
                                 if save_txt and is_signal:  # Write to file
@@ -493,25 +484,25 @@ def detect(
 
                                 check = 0
                                 probability = round(float(conf), 3)
-                                trade_date = stockimg.get_trade_date(dates)
-                                close = stockimg.get_trade_close(trade_date)
-                                df = signals[stockimg.ticker].get(trade_date)
+                                last_date = stockimg.get_last_date(dates)
+                                close = stockimg.get_trade_close(last_date)
+                                df = signals[stockimg.ticker].get(last_date)
 
                                 if df is None:
-                                    signals[stockimg.ticker][trade_date] = pd.DataFrame({
+                                    signals[stockimg.ticker][last_date] = pd.DataFrame({
                                         'Ticker': [stockimg.ticker],
-                                        'Date': [trade_date],
+                                        'Date': [last_date],
                                         'Label': [signal],
                                         'Close': [close],
                                         'Probability': [probability],
                                         'Range': ['/'.join(dates)],
-                                        'Detect': [stockimg.trade_date]
+                                        'Detect': [stockimg.last_date]
                                     })
                                     if stockimg.last_signal(xmin, xmax, 3):
                                         is_signal = True
                                 else:
                                     if df.Label[0] != signal:
-                                        signals[stockimg.ticker].pop(trade_date)
+                                        signals[stockimg.ticker].pop(last_date)
                                         is_signal = False
 
                                 if save_txt and is_signal:  # Write to file
@@ -539,7 +530,7 @@ def detect(
     for ticker, box in signals.items():
         df_list = []
         save_path = str(save_dir / 'signals' / f'{ticker}.csv')
-        for trade_date, df in box.items():
+        for last_date, df in box.items():
             df_list.append(df)
         try:
             signal_df = pd.concat(df_list, ignore_index=True)
@@ -606,21 +597,5 @@ if __name__ == '__main__':
     opt = parser.parse_args()
     print(opt)
 
-    vaiv = VAIV(ROOT)
-    kwargs = {
-        'market': 'Kospi',
-        'feature': {'Volume': False, 'MA': [-1], 'MACD': False},
-        'offset': 1,
-        'size': [1800, 650],
-        'candle': 245,
-        'linespace': 1,
-        'candlewidth': 0.8,
-        'style': 'default'  # default는 'classic'
-    }
-    vaiv.set_kwargs(**kwargs)
-    vaiv.set_stock()
-    vaiv.set_prediction()
-    vaiv.set_image()
-
     with torch.no_grad():
-        detect(**vars(opt), vaiv=vaiv)
+        detect(**vars(opt))

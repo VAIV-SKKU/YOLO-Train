@@ -1,36 +1,43 @@
 from pathlib import Path
 import pandas as pd
 import sys
-
-sys.path.append('/home/ubuntu/2022_VAIV_Cho/VAIV/Yolo/Code/yolov7')
-
-ROOT = Path('/home/ubuntu/2022_VAIV_Cho/VAIV')
-sys.path.append(str(ROOT))
-sys.path.append(str(ROOT / 'Common' / 'Code'))
-
-from manager import VAIV  # noqa: E402
+p = Path.absolute(Path.cwd().parent)
+sys.path.append(str(p))
+from Data.stock import Stock  # Modify Path
 
 
 class StockImage:
-    def __init__(self, path, vaiv: VAIV):
+    def __init__(self, path):
         p = Path(path)
+        print(p)
         file_name = p.stem
-        ticker, date = file_name.split('_')
-        vaiv.set_kwargs(ticker=ticker, trade_date=date)
-        vaiv.load_df('pixel')
-        vaiv.load_df('stock')
+        ticker, last_date = file_name.split('_')[:2]
+        self.ticker = ticker
+        self.date = last_date
+        
         try:
-            lpath = p.parent.parent / 'dataframes' / f'{file_name}.csv'
+            i = p.parts.index('images')
+            parts = list(p.parts)
+            parts[i] = 'dataframes'
+            lpath = Path(*parts).with_suffix('.csv')
             labeling = pd.read_csv(lpath)
             self.labeling = labeling
         except FileNotFoundError:
             pass
-        pixel = vaiv.modedf.get('pixel')
-        self.vaiv = vaiv
-        self.stock = vaiv.modedf.get('stock')
-        self.pixel = pixel
+        try:
+            i = p.parts.index('images')
+            parts = list(p.parts)
+            parts[i] = 'pixels'
+            pixelPath = Path(*parts).with_suffix('.csv')
+            pixel = pd.read_csv(pixelPath, index_col=0)
+            self.pixel = pixel
+        except FileNotFoundError:
+            pass
+        
+        self.stock = Stock(ticker, root=(Path.cwd().parent / 'Data')).load_data()
         self.ticker = ticker
-        self.trade_date = date
+        self.last_date = last_date
+
 
     def get_box_date(self, xmin, xmax):
         pixels = self.pixel.to_dict('index')
@@ -44,15 +51,15 @@ class StockImage:
                 dates.append(date)
         return dates
 
-    def get_trade_date(self, dates):
+    def get_last_date(self, dates):
         try:
             end = dates[-1]
         except IndexError:
-            print(self.ticker, self.trade_date, dates)
+            print(self.ticker, self.last_date, dates)
             return None
         after = self.pixel.index[self.pixel.index > end].tolist()
         if len(after) == 0:
-            return self.trade_date
+            return self.last_date
         else:
             return after[0]
 
@@ -71,7 +78,7 @@ class StockImage:
             print(i)
             print(self.pixel)
             print(self.ticker)
-            print(self.trade_date)
+            print(self.last_date)
             exit()
         return pix_min, pix_max
 
