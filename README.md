@@ -296,6 +296,30 @@ python detect.py --save-txt --trace --weights [WEIGHTS_FROM_TRAINED_MODEL] --con
 
 ```
 
+### Condition
+
+- Directory Condition
+To use module in Data Folder
+```
+├── Data
+└── Yolo-Train
+```
+
+- Image Folder Condition
+To convert pixel coordinate to date
+```
+{Image Folder}
+├── images
+│     └── ...
+│         ├── 000250_2022-12-01_245.png
+│         └── ...
+└── pixels
+      └── ...
+          ├── 000250_2022-12-01_245.csv
+          └── ...
+```
+
+
 ### Arguments
 
 - pair 0 : Detects both BUY/SELL signals
