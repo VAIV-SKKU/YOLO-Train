@@ -260,10 +260,6 @@ YOLOv7 with decoupled TAL head (YOLOR + YOLOv5 + YOLOv6)
 
 <br />
 
-- **[buy_sell_count.py](https://github.com/VAIV-SKKU/YOLO-Train/blob/main/buy_sell_count.py)**
-  - Tests based on the date threshold
-<br />
-
 
 
 # Getting Started 
